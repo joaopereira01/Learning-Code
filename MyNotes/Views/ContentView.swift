@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
 
-        
+/*
         Text("Hello, world!")
             // These are the modifiers for the green background and white text
             .padding()
@@ -27,6 +27,7 @@ struct ContentView: View {
     }
     
 }
+ */
  
 /*
         // Stack containing the two cards
@@ -1542,7 +1543,36 @@ ZStack {
  
  */
 
-
+        
+        VStack {
+            
+            GeometryReader { geo in
+                
+                Rectangle()
+                    .frame(width: geo.size.width/4, height: geo.size.height, alignment: .center)
+                    .onTapGesture {
+                        print("global x: \(geo.frame(in:.global).minX) ,  y: \(geo.frame(in: .global).minY)")
+                        print("local x: \(geo.frame(in:.local).minX) ,  y: \(geo.frame(in: .local).minY)")
+                        
+                    }
+            }.position(x: 300, y: 400)
+            
+            GeometryReader { geo in
+                
+                Rectangle()
+                    .frame(width: geo.size.width/4, height: geo.size.height/2
+                           , alignment: .center)
+                    .foregroundColor(.green)
+                    .onTapGesture {
+                        print("global x: \(geo.frame(in:.global).minX) ,  y: \(geo.frame(in: .global).minY)")
+                        print("local x: \(geo.frame(in:.local).minX) ,  y: \(geo.frame(in: .local).minY)")
+                        
+                        
+                    }
+            }
+        }
+    }
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
